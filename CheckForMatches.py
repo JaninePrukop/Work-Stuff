@@ -51,12 +51,12 @@ time.sleep(4)
 driver.find_element_by_partial_link_text('Sign in').click()
 
 emailLogin = driver.find_element_by_class_name('login-email')
-emailLogin.send_keys('JANINE.PRUKOP@Gmail.com')
+emailLogin.send_keys('EXAMPLE@Gmail.com')
 
 time.sleep(2)
 
 passLogin = driver.find_element_by_xpath('//*[@id="login-password"]')
-passLogin.send_keys('TempPassword1')
+passLogin.send_keys('EXAMPLE')
 passLogin.send_keys(Keys.RETURN)
 
 time.sleep(5)
