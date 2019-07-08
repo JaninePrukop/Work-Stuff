@@ -1,8 +1,7 @@
 # Original Author Kaleb Moore
 # Edits by Janine Prukop
-# Date last modified 4/17/2019
+# Date last modified 6-27-2019
 
-from tqdm import tqdm
 from validate_email import validate_email
 import re
 import time
@@ -66,26 +65,30 @@ def validate(emails):
     domain = splitEmail[-1]
     junkemail = "askdjh23@" + domain
     # print(junkemail)
+    '''
     try: verify = validate_email(junkemail, verify=True)
     except:
         results = 'timeout'
     if verify is True:
-        results = 'Catch-all'
+        results = 'Maybe'
     else:
-        if len(email) == 0:
-            results = 'No email provided'
+'''
+    if len(email) == 0:
+        results = 'No email provided'
+    else:
+        try:
+            verify = validate_email(email, verify=True)
+        except:
+            results = 'timeout'
+        if verify is True:
+            results = 'Good Email'
         else:
-            try:
-                verify = validate_email(email, verify=True)
-            except:
-                results = 'timeout'
-            if verify is True:
-                results = 'Good Email'
-            else:
-                results = 'Bad Email'
-
+            results = 'Bad Email'
+    # vprint(email)
+    # print(results)
     valid = zip([str(email)], [str(results)])
     valid = set(valid)
+    # print(valid)
     return valid
 
 

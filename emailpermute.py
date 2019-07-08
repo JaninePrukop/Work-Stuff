@@ -9,8 +9,8 @@ import time
 
 startTime = time.perf_counter()
 
-inFile = "TestSheet2.csv"
-outFile = "outputPermute2-1.csv"
+inFile = input("What file are we reading from? ") + '.csv'
+outFile = "output_" + inFile
 
 if __name__ == '__main__':
 
@@ -43,12 +43,23 @@ if __name__ == '__main__':
             for row in tqdm(readCSV, desc='Checking Emails'):
                 output = row
                 # print(row)
-                # print(output)
+                print(output)
                 if len(row) > 0:
-                    # first = row[fn]
-                    # last = row[ln]
+                    first = row[fn]
+                    last = row[ln]
                     email = row[em]
-                    result = list(validateBundle.permute(row[fn], row[ln], email))
+                    print(first, last, email)
+                    result = list(validateBundle.permute(first, last, email))
+                    if result[1] == 'Bad Email':
+                        result = list(validateBundle.permute(first, last, email))
+                        if result[1] == 'Bad Email':
+                            result = list(validateBundle.permute(first, last, email))
+                            if result[1] == 'Bad Email':
+                                result[1] = "Hard bounce"
+                            else:
+                                result[1] = "Soft bounce"
+                        else:
+                            result[1] = "Soft bounce"
                     # print(result)
                     output.append(result[0])
                     output.append(result[1])
