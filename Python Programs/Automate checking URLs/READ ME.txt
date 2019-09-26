@@ -1,0 +1,6 @@
+packages to install:
+selenium
+
+Save the list of URLs as a CSV with the URLs in the first collumn.
+The file will prompt you for the name of the file to read from, input the name exactly.
+Once you are done with the website, go back in to the "Run" section of pycharm and hit enter.
